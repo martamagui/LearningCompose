@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -37,7 +39,7 @@ fun Greeting(name: String, modifier: Modifier) {
     Text(text = "Hello $name!", modifier = modifier)
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     LearningComposeTheme {
@@ -59,14 +61,37 @@ fun DefaultPreview() {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun MediaItem() {
     Column {
-        Box(modifier = Modifier
-            .height(200.dp)
-            .fillMaxWidth()
-            .background(color = Color.Red)){}
+        Box(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth()
+                .background(color = Color.Red)
+        ) {}
         Text(text = "Titulo")
+    }
+}
+
+@Preview(widthDp = 400, heightDp = 200, showBackground = true)
+@Composable
+fun btnToLearnModifiers() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Hola mundo",
+            modifier = Modifier
+                .clickable {
+                /*De esta forma es clicable la vista completa*/
+                }
+                .background(Color.Cyan)
+                .border(2.dp, Color.Blue)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+
+        )
     }
 }
