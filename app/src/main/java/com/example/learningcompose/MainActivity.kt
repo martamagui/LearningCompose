@@ -61,7 +61,7 @@ fun DefaultPreview() {
     }
 }
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun MediaItem() {
     Column {
@@ -71,11 +71,19 @@ fun MediaItem() {
                 .fillMaxWidth()
                 .background(color = Color.Red)
         ) {}
-        Text(text = "Titulo")
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primary)
+                .padding(16.dp)
+        ) {
+            Text(text = "Titulo")
+        }
     }
 }
 
-@Preview(widthDp = 400, heightDp = 200, showBackground = true)
+//@Preview(widthDp = 400, heightDp = 200, showBackground = true)
 @Composable
 fun btnToLearnModifiers() {
     Box(
@@ -86,7 +94,7 @@ fun btnToLearnModifiers() {
             text = "Hola mundo",
             modifier = Modifier
                 .clickable {
-                /*De esta forma es clicable la vista completa*/
+                    /*De esta forma es clicable la vista completa*/
                 }
                 .background(Color.Cyan)
                 .border(2.dp, Color.Blue)
