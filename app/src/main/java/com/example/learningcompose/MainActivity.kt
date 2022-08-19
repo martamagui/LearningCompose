@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,5 +56,17 @@ fun DefaultPreview() {
                 modifier = Modifier.background(Color.Yellow)
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MediaItem() {
+    Column {
+        Box(modifier = Modifier
+            .height(200.dp)
+            .fillMaxWidth()
+            .background(color = Color.Red)){}
+        Text(text = "Titulo")
     }
 }
