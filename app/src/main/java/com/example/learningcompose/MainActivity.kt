@@ -72,7 +72,7 @@ fun DefaultPreview() {
     }
 }
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun MediaItem() {
     Column {
@@ -86,15 +86,16 @@ fun MediaItem() {
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primary)
+                .background(Color.Cyan)
                 .padding(16.dp)
         ) {
-            Text(text = "Titulo")
+            Text(text = "Titulo",
+            style = MaterialTheme.typography.headlineSmall)
         }
     }
 }
 
-@Preview(widthDp = 350, heightDp = 500, showBackground = true)
+//@Preview(widthDp = 350, heightDp = 500, showBackground = true)
 @Composable
 fun btnToLearnModifiers() {
     Box(
