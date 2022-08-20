@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Learning Compose</string>
+    <string name="hola">Un texto es una composición de signos codificados en un sistema de escritura que forma una unidad de sentido.</string>
 </resources>

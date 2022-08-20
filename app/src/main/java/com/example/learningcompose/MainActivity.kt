@@ -1,5 +1,6 @@
 package com.example.learningcompose
 
+import android.graphics.fonts.FontStyle
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,9 +14,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,7 +72,7 @@ fun DefaultPreview() {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun MediaItem() {
     Column {
@@ -83,7 +94,7 @@ fun MediaItem() {
     }
 }
 
-//@Preview(widthDp = 400, heightDp = 200, showBackground = true)
+@Preview(widthDp = 350, heightDp = 500, showBackground = true)
 @Composable
 fun btnToLearnModifiers() {
     Box(
@@ -91,7 +102,27 @@ fun btnToLearnModifiers() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Hola mundo",
+            text = stringResource(id = R.string.hola),
+            fontSize =22.sp,
+            fontStyle= androidx.compose.ui.text.font.FontStyle.Italic,
+            fontWeight = FontWeight(700),
+            fontFamily = FontFamily.Monospace ,
+            letterSpacing = 5.sp,
+            //textDecoration = TextDecoration.LineThrough,
+            textAlign = TextAlign.Center,
+            lineHeight = 2.em,
+            /*maxLines = 3,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis,*/
+            //style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium.copy(
+                shadow = Shadow(
+                    offset = Offset(2f, 20f),
+                    blurRadius = 2f,
+                    color = Color.White.copy(alpha = 0.9f)
+                )
+            ),
+
             modifier = Modifier
                 .clickable {
                     /*De esta forma es clicable la vista completa*/
