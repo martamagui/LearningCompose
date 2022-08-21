@@ -1,13 +1,16 @@
 package com.example.learningcompose
 
-import android.graphics.fonts.FontStyle
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -17,16 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android", modifier = Modifier.background(Color.LightGray))
+                    MediaItem()
                 }
             }
         }
@@ -80,8 +84,31 @@ fun MediaItem() {
             modifier = Modifier
                 .height(200.dp)
                 .fillMaxWidth()
-                .background(color = Color.Red)
-        ) {}
+                .background(color = Color.Red),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = rememberImagePainter(
+                    data = "https://media.istockphoto.com/photos/closeup-portrait-of-funny-ginger-cat-wearing-sunglasses-isolated-on-picture-id1188445864?k=20&m=1188445864&s=612x612&w=0&h=0vuJeOxJr8Lu3Q1VdT1z7t6HcM8Oj7EVJe3CexGnH_8=",
+                    builder = {
+                        //transformations(CircleCropTransformation()),
+                        crossfade(true)
+                    }
+                ),
+                contentDescription ="Cat with sun glasses",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = null,
+                //size da las mismas dimensiones tanto al alto como al ancho
+                modifier = Modifier.size(92.dp),
+                tint = Color.White
+            )
+            //Ejemplo de carga de icono desde los recursos
+            //Icon(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = )
+        }
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
