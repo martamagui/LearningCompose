@@ -3,14 +3,9 @@ package com.example.learningcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
@@ -35,6 +30,8 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.learningcompose.ui.theme.LearningComposeTheme
+
+@ExperimentalFoundationApi
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +78,10 @@ fun DefaultPreview() {
 
 //@Preview(showBackground = true)
 @Composable
-fun MediaItem(item: MediaItem) {
-    Column (Modifier.width(200.dp)){
+fun MediaItem(item: MediaItem, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+    ) {
         Box(
             modifier = Modifier
                 .height(200.dp)
@@ -171,6 +170,7 @@ fun btnToLearnModifiers() {
 }
 
 
+@ExperimentalFoundationApi
 @Preview
 @Composable
 fun MediaList() {
@@ -181,10 +181,19 @@ fun MediaList() {
             MediaItem(item)
         }
     }*/
-    LazyRow(contentPadding = PaddingValues(4.dp),
+    /*LazyRow(contentPadding = PaddingValues(4.dp),
     horizontalArrangement = Arrangement.spacedBy(4.dp)) {
         items(getMedia()) { item ->
             MediaItem(item)
+        }
+    }*/
+    LazyVerticalGrid(
+        //cells = GridCells.Fixed(2),
+        cells = GridCells.Adaptive(150.dp),
+        contentPadding = PaddingValues(2.dp)
+    ) {
+        items(getMedia()) { item ->
+            MediaItem(item, Modifier.padding(2.dp))
         }
     }
 }
