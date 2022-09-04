@@ -9,6 +9,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MediaItem()
+                    MediaList()
                 }
             }
         }
@@ -79,7 +80,7 @@ fun DefaultPreview() {
 
 //@Preview(showBackground = true)
 @Composable
-fun MediaItem() {
+fun MediaItem(item: MediaItem) {
     Column {
         Box(
             modifier = Modifier
@@ -90,25 +91,27 @@ fun MediaItem() {
         ) {
             Image(
                 painter = rememberImagePainter(
-                    data = "https://media.istockphoto.com/photos/closeup-portrait-of-funny-ginger-cat-wearing-sunglasses-isolated-on-picture-id1188445864?k=20&m=1188445864&s=612x612&w=0&h=0vuJeOxJr8Lu3Q1VdT1z7t6HcM8Oj7EVJe3CexGnH_8=",
+                    data = item.thumb,
                     builder = {
                         //transformations(CircleCropTransformation()),
                         crossfade(true)
                     }
                 ),
-                contentDescription ="Cat with sun glasses",
+                contentDescription = "Cat with sun glasses",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            Icon(
-                imageVector = Icons.Default.PlayArrow,
-                contentDescription = null,
-                //size da las mismas dimensiones tanto al alto como al ancho
-                modifier = Modifier.size(92.dp),
-                tint = Color.White
-            )
-            //Ejemplo de carga de icono desde los recursos
-            //Icon(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = )
+            if (item.type == MediaItem.Type.VIDEO) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = null,
+                    //size da las mismas dimensiones tanto al alto como al ancho
+                    modifier = Modifier.size(92.dp),
+                    tint = Color.White
+                )
+                //Ejemplo de carga de icono desde los recursos
+                //Icon(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = )
+            }
         }
         Box(
             contentAlignment = Alignment.Center,
@@ -117,8 +120,10 @@ fun MediaItem() {
                 .background(Color.Cyan)
                 .padding(16.dp)
         ) {
-            Text(text = "Titulo",
-            style = MaterialTheme.typography.headlineSmall)
+            Text(
+                text = item.title,
+                style = MaterialTheme.typography.headlineSmall
+            )
         }
     }
 }
@@ -132,10 +137,10 @@ fun btnToLearnModifiers() {
     ) {
         Text(
             text = stringResource(id = R.string.hola),
-            fontSize =22.sp,
-            fontStyle= androidx.compose.ui.text.font.FontStyle.Italic,
+            fontSize = 22.sp,
+            fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
             fontWeight = FontWeight(700),
-            fontFamily = FontFamily.Monospace ,
+            fontFamily = FontFamily.Monospace,
             letterSpacing = 5.sp,
             //textDecoration = TextDecoration.LineThrough,
             textAlign = TextAlign.Center,
@@ -167,11 +172,12 @@ fun btnToLearnModifiers() {
 
 @Preview
 @Composable
-fun MediaList(){
+fun MediaList() {
     //Equivalente a Rv en xml
-    LazyColumn(){
-        items( 100){
-            MediaItem()
+    LazyColumn(contentPadding = PaddingValues(4.dp),
+    verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        items(getMedia()) { item ->
+            MediaItem(item)
         }
     }
 }
