@@ -9,6 +9,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
@@ -81,7 +82,7 @@ fun DefaultPreview() {
 //@Preview(showBackground = true)
 @Composable
 fun MediaItem(item: MediaItem) {
-    Column {
+    Column (Modifier.width(200.dp)){
         Box(
             modifier = Modifier
                 .height(200.dp)
@@ -174,8 +175,14 @@ fun btnToLearnModifiers() {
 @Composable
 fun MediaList() {
     //Equivalente a Rv en xml
-    LazyColumn(contentPadding = PaddingValues(4.dp),
+    /*LazyColumn(contentPadding = PaddingValues(4.dp),
     verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        items(getMedia()) { item ->
+            MediaItem(item)
+        }
+    }*/
+    LazyRow(contentPadding = PaddingValues(4.dp),
+    horizontalArrangement = Arrangement.spacedBy(4.dp)) {
         items(getMedia()) { item ->
             MediaItem(item)
         }
