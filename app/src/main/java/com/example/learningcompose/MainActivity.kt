@@ -1,6 +1,5 @@
 package com.example.learningcompose
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,15 +11,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -203,7 +205,17 @@ fun MediaList() {
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
 fun StateSample() {
-    val text =  remember {mutableStateOf("")}
+    //val text =  remember {mutableStateOf("")}
+    //Con esta forma no hace falta acceder al .value de los estados
+    //Hay que asegurarse de que el getValue y el setValue estén importados
+    /*
+        import androidx.compose.runtime.getValue
+        import androidx.compose.runtime.setValue
+    */
+    //Esta opción no recuerda el estado al rotar el dispositivo
+    //var text by remember { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -211,23 +223,23 @@ fun StateSample() {
         verticalArrangement = Arrangement.Center
     ) {
         BasicTextField(
-            value = text.value,
-            onValueChange = { text.value = it },
+            value = text,
+            onValueChange = { text = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.LightGray)
                 .padding(4.dp)
         )
         Text(
-            text = text.value,
+            text = text,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         )
         Button(
-            onClick = { text.value = "" },
+            onClick = { text = "" },
             modifier = Modifier.fillMaxWidth(),
-            enabled = text.value.isNotEmpty()
+            enabled = text.isNotEmpty()
         ) {
             Text(text = "CLEAR")
         }
