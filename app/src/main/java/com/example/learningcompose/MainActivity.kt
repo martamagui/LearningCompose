@@ -46,15 +46,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var text by rememberSaveable { mutableStateOf("") }
-                    StateSample(text) { text = it }
+                    var (value, onValueChange) = rememberSaveable { mutableStateOf("") }
+                    StateSample(
+                        value = value,
+                        onValueChange = onValueChange
+                    )
                 }
             }
         }
     }
 }
+
 @Composable
-fun StateSample(value:String, onValueChange: (String)-> Unit) {
+fun StateSample(value: String, onValueChange: (String) -> Unit) {
     //val text =  remember {mutableStateOf("")}
     //Con esta forma no hace falta acceder al .value de los estados
     //Hay que asegurarse de que el getValue y el setValue estén importados
