@@ -46,9 +46,51 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    StateSample()
+                    var text by rememberSaveable { mutableStateOf("") }
+                    StateSample(text) { text = it }
                 }
             }
+        }
+    }
+}
+@Composable
+fun StateSample(value:String, onValueChange: (String)-> Unit) {
+    //val text =  remember {mutableStateOf("")}
+    //Con esta forma no hace falta acceder al .value de los estados
+    //Hay que asegurarse de que el getValue y el setValue estén importados
+    /*
+        import androidx.compose.runtime.getValue
+        import androidx.compose.runtime.setValue
+    */
+    //Esta opción no recuerda el estado al rotar el dispositivo
+    //var text by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(64.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        BasicTextField(
+            value = value,
+            onValueChange = { onValueChange(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.LightGray)
+                .padding(4.dp)
+        )
+        Text(
+            text = value,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        Button(
+            onClick = { onValueChange("") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = value.isNotEmpty()
+        ) {
+            Text(text = "CLEAR")
         }
     }
 }
@@ -202,46 +244,3 @@ fun MediaList() {
     }
 }
 
-@Preview(showBackground = true, device = Devices.PIXEL_4)
-@Composable
-fun StateSample() {
-    //val text =  remember {mutableStateOf("")}
-    //Con esta forma no hace falta acceder al .value de los estados
-    //Hay que asegurarse de que el getValue y el setValue estén importados
-    /*
-        import androidx.compose.runtime.getValue
-        import androidx.compose.runtime.setValue
-    */
-    //Esta opción no recuerda el estado al rotar el dispositivo
-    //var text by remember { mutableStateOf("") }
-    var text by rememberSaveable { mutableStateOf("") }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(64.dp),
-        verticalArrangement = Arrangement.Center
-    ) {
-        BasicTextField(
-            value = text,
-            onValueChange = { text = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.LightGray)
-                .padding(4.dp)
-        )
-        Text(
-            text = text,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        )
-        Button(
-            onClick = { text = "" },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = text.isNotEmpty()
-        ) {
-            Text(text = "CLEAR")
-        }
-    }
-}
