@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
@@ -62,14 +60,28 @@ class MainActivity : ComponentActivity() {
                                         Icon(Icons.Default.Person, contentDescription = "Person")
                                     }
                                 },
-                                navigationIcon = {
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = "search"
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Share,
+                                            contentDescription = "share"
+                                        )
+                                    }
+                                }
+                                /*navigationIcon = {
                                     IconButton(onClick = { /*TODO*/ }) {
                                         Icon(
                                             imageVector = Icons.Default.Menu,
                                             contentDescription = "icon menu"
                                         )
                                     }
-                                }
+                                }*/
 
                             )
                         }
