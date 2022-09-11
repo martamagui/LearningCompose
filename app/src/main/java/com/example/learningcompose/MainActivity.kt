@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -52,10 +54,23 @@ class MainActivity : ComponentActivity() {
                         topBar = {
                             SmallTopAppBar(
                                 title = {
-                                    Text(
-                                        text = stringResource(id = R.string.app_name)
-                                    )
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            text = stringResource(id = R.string.app_name)
+                                        )
+                                        Spacer(modifier = Modifier.padding(16.dp))
+                                        Icon(Icons.Default.Person, contentDescription = "Person")
+                                    }
+                                },
+                                navigationIcon = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = "icon menu"
+                                        )
+                                    }
                                 }
+
                             )
                         }
                     ) { padding ->
