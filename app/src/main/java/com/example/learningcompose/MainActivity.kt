@@ -23,6 +23,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -38,6 +39,7 @@ import com.example.learningcompose.ui.theme.LearningComposeTheme
 @ExperimentalFoundationApi
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -46,16 +48,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var (value, onValueChange) = rememberSaveable { mutableStateOf("") }
-                    StateSample(
-                        value = value,
-                        onValueChange = onValueChange
-                    )
+                    Scaffold(
+                        topBar = {
+                            SmallTopAppBar(
+                                title = {
+                                    Text(
+                                        text = stringResource(id = R.string.app_name)
+                                    )
+                                }
+                            )
+                        }
+                    ) { padding ->
+                        MediaList(modifier = Modifier.padding(padding))
+                    }
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun StateSample(value: String, onValueChange: (String) -> Unit) {
@@ -223,7 +234,7 @@ fun btnToLearnModifiers() {
 @ExperimentalFoundationApi
 //@Preview
 @Composable
-fun MediaList() {
+fun MediaList(modifier: Modifier) {
     //Equivalente a Rv en xml
     /*LazyColumn(contentPadding = PaddingValues(4.dp),
     verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -240,7 +251,8 @@ fun MediaList() {
     LazyVerticalGrid(
         //cells = GridCells.Fixed(2),
         cells = GridCells.Adaptive(150.dp),
-        contentPadding = PaddingValues(2.dp)
+        contentPadding = PaddingValues(2.dp),
+        modifier = modifier
     ) {
         items(getMedia()) { item ->
             MediaItem(item, Modifier.padding(2.dp))
