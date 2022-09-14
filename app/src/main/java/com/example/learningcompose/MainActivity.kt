@@ -9,9 +9,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.learningcompose.ui.LearningComposeContent
+import com.example.learningcompose.ui.MainScreen
 import com.example.learningcompose.ui.theme.LearningComposeTheme
 
-@ExperimentalFoundationApi
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -19,11 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LearningComposeContent{
-                Scaffold(
-                    topBar = { MainTopAppBar() }
-                ) { padding ->
-                    MediaList(modifier = Modifier.padding(padding))
-                }
+                MainScreen()
             }
         }
     }

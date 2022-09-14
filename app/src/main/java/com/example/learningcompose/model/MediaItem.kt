@@ -1,4 +1,4 @@
-package com.example.learningcompose
+package com.example.learningcompose.model
 
 import java.lang.reflect.Type
 
