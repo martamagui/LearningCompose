@@ -71,7 +71,10 @@ fun MediaItem(
             navController.navigate("detail/${item.id}")
         }
     ) {
-        Thumb(item)
+        Thumb(
+            item,
+            Modifier.padding(PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)))
+        )
         Title(item)
     }
 }
@@ -93,9 +96,13 @@ fun Title(item: MediaItem) {
 }
 
 @Composable
-fun Thumb(item: MediaItem) {
+fun Thumb(
+    item: MediaItem,
+    //Creamos en el constructor un param. modifier, que si no se pasa en la invocación del thum se inicializa como Modifier simple
+    modifier: Modifier = Modifier
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .height(dimensionResource(id = R.dimen.item_heigth))
             .fillMaxWidth()
             .background(color = Color.Red),

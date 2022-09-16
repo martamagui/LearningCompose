@@ -25,12 +25,20 @@ class MainActivity : ComponentActivity() {
                         MainScreen(navController)
                     }
                     composable(
+                        //Si es opcional
+                        //route = "detail?mediaId{mediaId}",
+                        //Por defecto los argumentos son de tipo string
                         route = "detail/{mediaId}",
                         arguments = listOf(
+                            //Forzamos que sea un entero
                             navArgument("mediaId") { type = NavType.IntType }
                         )
                     ) { navBackStackEntry ->
+                        //Recogemos los argumentos enviados
                         val id = navBackStackEntry.arguments?.getInt("mediaId")
+                        //Requerimos que no sea un nulo
+                        //El segundo parámetro sería el mensaje de error que salte si lo fuera
+                        //requireNotNull(id, {"no puede ser nulo porque el elemento necesita el id"})
                         requireNotNull(id)
                         DetailScreen(mediaId = id)
                     }
