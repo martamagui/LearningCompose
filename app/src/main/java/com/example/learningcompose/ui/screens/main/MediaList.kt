@@ -1,13 +1,13 @@
 package com.example.learningcompose
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.learningcompose.model.MediaItem
@@ -41,8 +42,8 @@ fun MediaList(navController: NavHostController, modifier: Modifier) {
         }
     }*/
     LazyVerticalGrid(
-        //cells = GridCells.Fixed(2),
-        cells = GridCells.Adaptive(dimensionResource(id = R.dimen.grid_cell)),
+        //cells = GridCells.Fixed(2), ,
+        columns = GridCells.Adaptive(dimensionResource(id = R.dimen.grid_cell)),
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
         modifier = modifier
     ) {
@@ -66,17 +67,24 @@ fun MediaItem(
     item: MediaItem,
     modifier: Modifier = Modifier,
 ) {
-    Column(
+    Card(
         modifier = modifier.clickable {
             navController.navigate("detail/${item.id}")
-        }
+        },
+        //elevation = 8.dp,
+        elevation = 0.dp,
+        border = BorderStroke(1.dp, Color.LightGray)
+        //shape = RoundedCornerShape(8.dp)
     ) {
-        Thumb(
-            item,
-            Modifier.padding(PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)))
-        )
-        Title(item)
+        Column {
+            Thumb(
+                item,
+                Modifier.padding(PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)))
+            )
+            Title(item)
+        }
     }
+
 }
 
 @Composable
@@ -85,7 +93,7 @@ fun Title(item: MediaItem) {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Cyan)
+            //.background(Color.Cyan)
             .padding(dimensionResource(id = R.dimen.padding_large))
     ) {
         Text(
