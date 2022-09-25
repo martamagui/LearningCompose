@@ -39,6 +39,8 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun LearningComposeTheme(
+    //El tema podría configurarse de forma manual desde la lógica de
+    //la aplicación, pasándolo cómo parámetro como true o false
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -49,6 +51,7 @@ fun LearningComposeTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+        //Elige según la configuración del dispositivo
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
