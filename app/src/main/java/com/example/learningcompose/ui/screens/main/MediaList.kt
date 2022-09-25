@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Shapes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
@@ -24,6 +25,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.learningcompose.model.MediaItem
 import com.example.learningcompose.model.getMedia
+import com.example.learningcompose.ui.theme.Shapes
 
 @ExperimentalFoundationApi
 @Composable
@@ -73,8 +75,8 @@ fun MediaItem(
         },
         //elevation = 8.dp,
         elevation = 0.dp,
-        border = BorderStroke(1.dp, Color.LightGray)
-        //shape = RoundedCornerShape(8.dp)
+        border = BorderStroke(1.dp, Color.LightGray),
+        shape = Shapes.medium
     ) {
         Column {
             Thumb(
