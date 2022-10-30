@@ -1,7 +1,7 @@
-package com.example.weatherappmvi.domain.weather
+package com.plcoding.weatherapp.domain.weather
 
 import androidx.annotation.DrawableRes
-import com.example.weatherappmvi.R
+import com.plcoding.weatherapp.R
 
 sealed class WeatherType(
     val weatherDesc: String,

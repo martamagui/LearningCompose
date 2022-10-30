@@ -1,4 +1,4 @@
-package com.example.weatherappmvi
+package com.plcoding.weatherapp
 
 import org.junit.Test
 
