@@ -50,5 +50,4 @@ fun WeatherDto.toWeatherInfo(): WeatherInfo {
         weatherDataPerDay = weatherDataMap,
         currentWeatherData = currentWeatherData
     )
-    //TODO continuar con la tarea que comenta Phillip
 }
