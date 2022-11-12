@@ -6,7 +6,18 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!--
+        ** Hilt Dependency Injection **
+
+            Una vez añadida la inyección de dependencias,
+            es necesario indicarle el nombre de la @HiltAndroidApp
+            a la tag application.
+
+            android:name=".WeatherApp"
+     -->
+
     <application
+        android:name=".WeatherApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
