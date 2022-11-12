@@ -20,18 +20,17 @@ class DefaultLocationTracker(
 ) : LocationTracker {
     override suspend fun getCurrentLocation(): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
-            application,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            application, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
         val hasAccessCoarseLocationPermission = ContextCompat.checkSelfPermission(
-            application,
-            Manifest.permission.ACCESS_COARSE_LOCATION
+            application, Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        val locationManager =
-            application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+
         if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled) {
             return null
         }
@@ -53,6 +52,5 @@ class DefaultLocationTracker(
                 //Cancelaría la corrutina para que no se siga ejecutando.
             }
         }
-
     }
 }
