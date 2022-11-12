@@ -1,5 +1,6 @@
 package com.plcoding.weatherapp.di
 
+import android.app.Application
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.plcoding.weatherapp.data.remote.WeatherApi
