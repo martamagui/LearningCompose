@@ -55,6 +55,7 @@ fun WeatherCard(
                     fontSize = 20.sp,
                     color = Color.White
                 )
+                Spacer(modifier = Modifier.height(32.dp))
             }
         }
     }
