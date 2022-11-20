@@ -10,9 +10,10 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.plcoding.weatherapp.domain.location.LocationTracker
 import kotlinx.coroutines.suspendCancellableCoroutine
+import javax.inject.Inject
 import kotlin.coroutines.resume
 
-class DefaultLocationTracker(
+class DefaultLocationTracker @Inject constructor(
     //Recoger la geolocalización
     private val locationClient: FusedLocationProviderClient,
     //Para poder pedir los permisos
@@ -27,7 +28,8 @@ class DefaultLocationTracker(
             application, Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager =
+            application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
