@@ -33,6 +33,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        //Al crear un proyecto compose a 0 nos facilita la configuración desde el pricipio
         compose true
     }
     composeOptions {

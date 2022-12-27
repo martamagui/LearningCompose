@@ -29,12 +29,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MySuperText() {
+    Text(text = "Aprendiendo con Aristides :)")
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
