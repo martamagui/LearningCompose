@@ -9,8 +9,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +32,26 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview
+//Se puede poner atributos a las previews
+@Preview(
+    name = "Preview nº1",
+    heightDp = 50,
+    showBackground = true,
+    showSystemUi = true,
+    //podemos ver el api level como queramos
+    apiLevel = 29,
+    device = Devices.PIXEL_4,
+    /*Se puede indicar el idioma a mostrar
+    locale = Locale.ENGLISH*/
+)
 @Composable
-fun MySuperText() {
-    Text(text = "Aprendiendo con Aristides :)")
+fun MySuperTextParent() {
+    MySuperText("Aprendiendo con Aristides :)")
+}
+
+@Composable
+fun MySuperText(name:String) {
+    Text(name)
 }
 
 //@Preview(showBackground = true)
