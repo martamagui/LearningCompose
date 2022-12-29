@@ -11,28 +11,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MyTextFieldAdvance() {
-    var myText by remember { mutableStateOf("") }
+fun MyTextFieldAdvance(myText: String, onValueChange: (String) -> Unit) {
 
     TextField(
         value = myText,
         onValueChange = {
-            myText = if (it.contains("a")) {
-                it.replace("a", "")
+            if (it.contains("a")) {
+                onValueChange(it.replace("a", ""))
             } else {
-                it
+                onValueChange(it)
             }
         },
         label = { Text(text = "Introduce un tu nombre") }
     )
 }
+
 @Composable
-fun MyOutLinedTextField() {
-    var myText by remember { mutableStateOf("") }
+fun MyOutLinedTextField(myText: String, onValueChange: (String) -> Unit) {
 
     OutlinedTextField(
         value = myText,
-        onValueChange = { myText = it },
+        onValueChange = { onValueChange(it) },
         label = { Text(text = "Introduce un tu nombre") },
         modifier = Modifier.padding(4.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -43,7 +42,6 @@ fun MyOutLinedTextField() {
 }
 
 @Composable
-fun MyTextField() {
-    var myText by remember { mutableStateOf("") }
-    TextField(value = myText, onValueChange = { myText = it })
+fun MyTextField(myText: String, onValueChange: (String) -> Unit) {
+    TextField(value = myText, onValueChange = { onValueChange(it) })
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
+import com.example.udemycoursedummyproject.theory.components.MyOutLinedTextField
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,5 +42,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
+        var myText by remember { mutableStateOf("") }
+        MyOutLinedTextField(myText) { myText = it }
     }
 }
