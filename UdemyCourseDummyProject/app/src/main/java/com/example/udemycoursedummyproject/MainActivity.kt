@@ -39,9 +39,72 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun MyColumn() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(
+                rememberScrollState()
+            ),
+        verticalArrangement = Arrangement.SpaceEvenly,
+
+        ) {
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Cyan)
+                .fillMaxWidth()
+                .height(300.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Magenta)
+                .fillMaxWidth()
+                .height(300.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Green)
+                .fillMaxWidth()
+                .height(300.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Cyan)
+                .fillMaxWidth()
+                .height(300.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Magenta)
+                .fillMaxWidth()
+                .height(30.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Green)
+                .fillMaxWidth()
+                .height(30.dp)
+        )
+        Text(
+            text = "hola", modifier = Modifier
+                .background(Color.Cyan)
+                .fillMaxWidth()
+                .height(30.dp)
+        )
+        Text(text = "hola", modifier = Modifier.background(Color.Magenta))
+        Text(text = "hola", modifier = Modifier.background(Color.Green))
+        /*  Text(text = "hola", modifier = Modifier.background(Color.Cyan).weight(3f))
+            Text(text = "hola", modifier = Modifier.background(Color.Magenta).weight(1f))
+            Text(text = "hola", modifier = Modifier.background(Color.Green).weight(1f))
+        */
+    }
+}
+
+
+@Composable
 fun MyBox(name: String) {
     //Si aun box no se le asigna altura o anchura,
-    // va a ocupar unicacmente el espacio que necesite
+    // va a ocupar unicamente el espacio que necesite
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -70,6 +133,8 @@ fun MyBox(name: String) {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyBox("Android")
+        // MyBox("Android")
+        MyColumn()
+
     }
 }
