@@ -1,5 +1,6 @@
 package com.example.udemycoursedummyproject.theory
 
+import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -134,6 +135,63 @@ fun MyBox(name: String) {
         }
     }
 }
+
+
+@Composable
+fun MySpacer(size: Int){
+    Spacer(modifier = Modifier.height(size.dp))
+}
+
+//HomeWork
+@Composable
+fun MyComplexLayout() {
+    Column(Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Cyan),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Ejemplo 1")
+        }
+        MySpacer(30)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Red),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Ejemplo 2")
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Green),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Ejemplo 3")
+            }
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Magenta),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Text(text = "Ejemplo 4")
+        }
+    }
+}
+
 
 
 /*
