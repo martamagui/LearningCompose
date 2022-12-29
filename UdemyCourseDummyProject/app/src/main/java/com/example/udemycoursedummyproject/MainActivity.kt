@@ -3,12 +3,9 @@ package com.example.udemycoursedummyproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -35,6 +32,41 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun MyRow() {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .horizontalScroll(rememberScrollState())
+    ) {
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+        Text(
+            text = "Ejemplo", modifier = Modifier
+                .padding(20.dp)
+        )
+
     }
 }
 
@@ -100,7 +132,6 @@ fun MyColumn() {
     }
 }
 
-
 @Composable
 fun MyBox(name: String) {
     //Si aun box no se le asigna altura o anchura,
@@ -125,7 +156,6 @@ fun MyBox(name: String) {
     }
 }
 
-
 @Preview(
     name = "Preview nº1",
     showBackground = true,
@@ -134,7 +164,7 @@ fun MyBox(name: String) {
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
         // MyBox("Android")
-        MyColumn()
-
+        //MyColumn()
+        MyRow()
     }
 }
