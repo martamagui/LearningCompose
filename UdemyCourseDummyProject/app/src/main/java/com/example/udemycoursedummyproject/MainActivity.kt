@@ -11,6 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,17 +43,22 @@ fun MyStateExample() {
     //var counter = remember { mutableStateOf(0) }
 
     //Almacena el estado de la variable aunque se rote la pantalla
-    var counter = rememberSaveable { mutableStateOf(0) }
+    //var counter = rememberSaveable { mutableStateOf(0) }
+
+    // Permite acceder directamente al value del estado necesita importar:
+    /*import androidx.compose.runtime.getValue
+     import androidx.compose.runtime.setValue*/
+    var counter by rememberSaveable { mutableStateOf(0) }
 
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { counter.value += 1 }) {
+        Button(onClick = { counter += 1 }) {
             Text(text = "Pulsar")
         }
-        Text(text = "He sido pulsado ${counter.value} veces")
+        Text(text = "He sido pulsado ${counter} veces")
 
     }
 }
