@@ -16,7 +16,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.example.udemycoursedummyproject.theory.MyBox
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
@@ -38,30 +44,31 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyStateExample() {
-    //remember almacena el estado anterior de la vista al repintarse, pero no si se rota la pantalla
-    //var counter = remember { mutableStateOf(0) }
-
-    //Almacena el estado de la variable aunque se rote la pantalla
-    //var counter = rememberSaveable { mutableStateOf(0) }
-
-    // Permite acceder directamente al value del estado necesita importar:
-    /*import androidx.compose.runtime.getValue
-     import androidx.compose.runtime.setValue*/
-    var counter by rememberSaveable { mutableStateOf(0) }
-
-    Column(
-        Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Button(onClick = { counter += 1 }) {
-            Text(text = "Pulsar")
-        }
-        Text(text = "He sido pulsado ${counter} veces")
-
+fun MyText() {
+    Column(Modifier.fillMaxSize()) {
+        Text(text = "Esto es un texto", color = Color.Red)
+        Text(text = "Esto es un texto", fontSize = 10.sp)
+        Text(text = "Esto es un texto", fontWeight = FontWeight.Bold)
+        Text(text = "Esto es un texto", fontWeight = FontWeight.Light)
+        Text(text = "Esto es un texto", style = TextStyle(fontFamily = FontFamily.Cursive))
+        Text(
+            text = "Esto es un texto",
+            style = TextStyle(textDecoration = TextDecoration.LineThrough)
+        )
+        Text(
+            text = "Esto es un texto",
+            style = TextStyle(textDecoration = TextDecoration.Underline)
+        )
+        Text(
+            text = "Esto es un texto", style = TextStyle(
+                textDecoration = TextDecoration.combine(
+                    listOf(TextDecoration.Underline, TextDecoration.LineThrough)
+                )
+            )
+        )
     }
 }
+
 
 @Preview(
     name = "Preview nº1",
@@ -70,6 +77,6 @@ fun MyStateExample() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyStateExample()
+        MyText()
     }
 }
