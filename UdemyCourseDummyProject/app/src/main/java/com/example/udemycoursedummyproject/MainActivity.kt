@@ -38,34 +38,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun MyButton() {
-
-    var enabled by rememberSaveable { mutableStateOf(true) }
-
-    Column(
-        Modifier
-            .fillMaxSize()
-            .padding(24.dp)
-    ) {
-        Button(
-            onClick = {
-                Log.i("My button", "CLICK!")
-                enabled != enabled
-            },
-            enabled = enabled,
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Magenta,
-                contentColor = Color.Blue
-            ),
-            border = BorderStroke(2.dp, Color.Blue)
-        ) {
-            Column() {
-                Text(text = "Hola")
-            }
-        }
-    }
-}
 
 @Preview(
     name = "Preview nº1",
@@ -74,6 +46,5 @@ fun MyButton() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyButton()
     }
 }
