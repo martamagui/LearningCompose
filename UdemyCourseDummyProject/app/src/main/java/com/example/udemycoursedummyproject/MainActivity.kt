@@ -1,8 +1,10 @@
 package com.example.udemycoursedummyproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -35,6 +37,28 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun MyButton() {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
+        Button(
+            onClick = { Log.i("My button", "CLICK!") },
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Magenta,
+                contentColor = Color.Blue
+            ),
+            border = BorderStroke(2.dp, Color.Blue)
+        ) {
+            Column() {
+                Text(text = "Hola")
+            }
+        }
+    }
+}
+
 @Preview(
     name = "Preview nº1",
     showBackground = true,
@@ -42,7 +66,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        var myText by remember { mutableStateOf("") }
-        MyOutLinedTextField(myText) { myText = it }
+        MyButton()
     }
 }
