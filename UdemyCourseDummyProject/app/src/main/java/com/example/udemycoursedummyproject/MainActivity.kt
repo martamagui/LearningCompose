@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -26,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
+import com.example.udemycoursedummyproject.theory.MySpacer
 import com.example.udemycoursedummyproject.theory.components.MyOutLinedTextField
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
@@ -54,6 +56,5 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        
     }
 }
