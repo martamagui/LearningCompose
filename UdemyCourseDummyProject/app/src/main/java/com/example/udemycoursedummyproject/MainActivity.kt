@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,29 +46,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun MyImageAdvance() {
-    Image(
-        painter = painterResource(id = R.drawable.ic_launcher_background),
-        contentDescription = "Esto es un ejemplo",
-        alpha = 0.5f,
-        modifier = Modifier
-            .clip(
-                CircleShape
-                //RoundedCornerShape(20.dp)
-            )
-            .border(2.dp, Color.Red, CircleShape)
-    )
-}
-
-@Composable
-fun MyImage() {
-    Image(
-        painter = painterResource(id = R.drawable.ic_launcher_background),
-        contentDescription = "Esto es un ejemplo",
-        alpha = 0.5f
-    )
-}
 
 @Preview(
     name = "Preview nº1",
@@ -75,6 +54,6 @@ fun MyImage() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyImageAdvance()
+        
     }
 }
