@@ -48,6 +48,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun MySwitch() {
+    var switchState by rememberSaveable { mutableStateOf(true) }
+
+    Switch(
+        checked = switchState,
+        onCheckedChange = { switchState = !switchState },
+        enabled = true,
+        colors = SwitchDefaults.colors(
+
+            checkedThumbColor = Color.Cyan,
+            uncheckedThumbColor = Color.Magenta,
+
+            uncheckedTrackAlpha = 0.8f,
+            checkedTrackAlpha = 1f,
+            uncheckedTrackColor = Color.Red,
+            checkedTrackColor = Color.DarkGray,
+
+            disabledCheckedThumbColor = Color.White,
+            disabledUncheckedTrackColor = Color.White,
+        )
+    )
+}
 
 @Preview(
     name = "Preview nº1",
@@ -56,5 +79,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
+        MySwitch()
     }
 }
