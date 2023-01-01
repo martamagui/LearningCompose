@@ -49,25 +49,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MySwitch() {
-    var switchState by rememberSaveable { mutableStateOf(true) }
+fun MyCheckBox() {
+    var state by rememberSaveable { mutableStateOf(true) }
 
-    Switch(
-        checked = switchState,
-        onCheckedChange = { switchState = !switchState },
-        enabled = true,
-        colors = SwitchDefaults.colors(
-
-            checkedThumbColor = Color.Cyan,
-            uncheckedThumbColor = Color.Magenta,
-
-            uncheckedTrackAlpha = 0.8f,
-            checkedTrackAlpha = 1f,
-            uncheckedTrackColor = Color.Red,
-            checkedTrackColor = Color.DarkGray,
-
-            disabledCheckedThumbColor = Color.White,
-            disabledUncheckedTrackColor = Color.White,
+    Checkbox(
+        checked = state, onCheckedChange = { state = !state },
+        enabled = false,
+        colors = CheckboxDefaults.colors(
+            checkedColor = Color.Red,
+            uncheckedColor = Color.Cyan,
+            disabledColor = Color.Gray,
+            checkmarkColor = Color.Green
         )
     )
 }
@@ -79,6 +71,6 @@ fun MySwitch() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MySwitch()
+        MyCheckBox()
     }
 }
