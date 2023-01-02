@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
 import com.example.udemycoursedummyproject.theory.MySpacer
 import com.example.udemycoursedummyproject.theory.components.MyOutLinedTextField
+import com.example.udemycoursedummyproject.ui.CheckInfo
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,26 +42,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MyBox("Android")
                 }
             }
         }
     }
 }
 
-@Composable
-fun MyCheckBoxWithText() {
-    var state by rememberSaveable { mutableStateOf(true) }
 
-    Row(
-        Modifier.padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(checked = state, onCheckedChange = { state = !state })
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(text = "Ejemplo 1")
-    }
-}
 
 @Preview(
     name = "Preview nº1",
@@ -69,6 +57,5 @@ fun MyCheckBoxWithText() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyCheckBoxWithText()
     }
 }
