@@ -49,19 +49,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyCheckBox() {
+fun MyCheckBoxWithText() {
     var state by rememberSaveable { mutableStateOf(true) }
 
-    Checkbox(
-        checked = state, onCheckedChange = { state = !state },
-        enabled = false,
-        colors = CheckboxDefaults.colors(
-            checkedColor = Color.Red,
-            uncheckedColor = Color.Cyan,
-            disabledColor = Color.Gray,
-            checkmarkColor = Color.Green
-        )
-    )
+    Row(
+        Modifier.padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(checked = state, onCheckedChange = { state = !state })
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = "Ejemplo 1")
+    }
 }
 
 @Preview(
@@ -71,6 +69,6 @@ fun MyCheckBox() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyCheckBox()
+        MyCheckBoxWithText()
     }
 }
