@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MyTriStatusCheckBox()
+
                 }
             }
         }
@@ -51,16 +51,67 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyTriStatusCheckBox() {
-    var status by rememberSaveable { mutableStateOf(ToggleableState.Indeterminate) }
+fun MyRadioButton() {
+    var status by rememberSaveable { mutableStateOf(true) }
 
-    TriStateCheckbox(state = status, onClick = {
-        when (status) {
-            ToggleableState.On -> ToggleableState.Off
-            ToggleableState.Off -> ToggleableState.Indeterminate
-            ToggleableState.Indeterminate -> ToggleableState.On
+    Row(
+        Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        RadioButton(
+            selected = status,
+            onClick = { status = !status },
+            //enabled = false,
+            colors = RadioButtonDefaults.colors(
+                selectedColor = Color.Yellow,
+                unselectedColor = Color.LightGray,
+                disabledColor = Color.Gray
+            )
+        )
+        Text(text = "Ejemplo RButton")
+    }
+}
+
+@Composable
+fun MyRadioButtonListContainer() {
+    var selectedRadioButton by rememberSaveable { mutableStateOf("Selected one") }
+    MyRadioButtonList(
+        selectedRadioButton = selectedRadioButton,
+        onClick = { selectedRadioButton = it }
+    )
+}
+
+@Composable
+fun MyRadioButtonList(selectedRadioButton: String, onClick: (String) -> Unit) {
+    Column(Modifier.fillMaxWidth()) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            RadioButton(
+                selected = selectedRadioButton == "Selected one",
+                onClick = { onClick("Selected one") })
+            Text(text = "Selected one")
         }
-    })
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            RadioButton(
+                selected = selectedRadioButton == "Sample",
+                onClick = { onClick("Sample") })
+            Text(text = "Sample")
+        }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            RadioButton(
+                selected = selectedRadioButton == "Sample 2",
+                onClick = { onClick("Sample 2") })
+            Text(text = "Sample 2")
+        }
+
+    }
 }
 
 
@@ -71,6 +122,6 @@ fun MyTriStatusCheckBox() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyTriStatusCheckBox()
+        MyRadioButtonListContainer()
     }
 }
