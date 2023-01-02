@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
@@ -42,12 +43,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    MyTriStatusCheckBox()
                 }
             }
         }
     }
 }
 
+@Composable
+fun MyTriStatusCheckBox() {
+    var status by rememberSaveable { mutableStateOf(ToggleableState.Indeterminate) }
+
+    TriStateCheckbox(state = status, onClick = {
+        when (status) {
+            ToggleableState.On -> ToggleableState.Off
+            ToggleableState.Off -> ToggleableState.Indeterminate
+            ToggleableState.Indeterminate -> ToggleableState.On
+        }
+    })
+}
 
 
 @Preview(
@@ -57,5 +71,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
+        MyTriStatusCheckBox()
     }
 }
