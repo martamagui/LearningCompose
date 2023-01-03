@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
 import com.example.udemycoursedummyproject.theory.MySpacer
+import com.example.udemycoursedummyproject.theory.components.MyCard
 import com.example.udemycoursedummyproject.theory.components.MyOutLinedTextField
 import com.example.udemycoursedummyproject.ui.CheckInfo
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
@@ -46,71 +47,8 @@ class MainActivity : ComponentActivity() {
 
                 }
             }
+
         }
-    }
-}
-
-@Composable
-fun MyRadioButton() {
-    var status by rememberSaveable { mutableStateOf(true) }
-
-    Row(
-        Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RadioButton(
-            selected = status,
-            onClick = { status = !status },
-            //enabled = false,
-            colors = RadioButtonDefaults.colors(
-                selectedColor = Color.Yellow,
-                unselectedColor = Color.LightGray,
-                disabledColor = Color.Gray
-            )
-        )
-        Text(text = "Ejemplo RButton")
-    }
-}
-
-@Composable
-fun MyRadioButtonListContainer() {
-    var selectedRadioButton by rememberSaveable { mutableStateOf("Selected one") }
-    MyRadioButtonList(
-        selectedRadioButton = selectedRadioButton,
-        onClick = { selectedRadioButton = it }
-    )
-}
-
-@Composable
-fun MyRadioButtonList(selectedRadioButton: String, onClick: (String) -> Unit) {
-    Column(Modifier.fillMaxWidth()) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            RadioButton(
-                selected = selectedRadioButton == "Selected one",
-                onClick = { onClick("Selected one") })
-            Text(text = "Selected one")
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            RadioButton(
-                selected = selectedRadioButton == "Sample",
-                onClick = { onClick("Sample") })
-            Text(text = "Sample")
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            RadioButton(
-                selected = selectedRadioButton == "Sample 2",
-                onClick = { onClick("Sample 2") })
-            Text(text = "Sample 2")
-        }
-
     }
 }
 
@@ -122,6 +60,6 @@ fun MyRadioButtonList(selectedRadioButton: String, onClick: (String) -> Unit) {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyRadioButtonListContainer()
+        MyCard()
     }
 }
