@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+//Una Surface es lo mismo que una card. Sólo que la card biene "preformateada" y la surface sin ninguna personalización
 @Composable
 fun MyCard() {
     Card(
