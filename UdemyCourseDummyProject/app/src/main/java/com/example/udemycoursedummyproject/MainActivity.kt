@@ -29,10 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
 import com.example.udemycoursedummyproject.theory.MySpacer
-import com.example.udemycoursedummyproject.theory.components.MyBadgeBox
-import com.example.udemycoursedummyproject.theory.components.MyCard
-import com.example.udemycoursedummyproject.theory.components.MyDivider
-import com.example.udemycoursedummyproject.theory.components.MyOutLinedTextField
+import com.example.udemycoursedummyproject.theory.components.*
 import com.example.udemycoursedummyproject.ui.CheckInfo
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
@@ -55,6 +52,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+
 @Preview(
     name = "Preview nº1",
     showBackground = true,
@@ -62,11 +60,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        Column(Modifier.fillMaxWidth()) {
-            MyBadgeBox()
-            MyDivider()
-            MyBadgeBox()
-        }
-
+            MyDropDownMenu()
     }
 }
