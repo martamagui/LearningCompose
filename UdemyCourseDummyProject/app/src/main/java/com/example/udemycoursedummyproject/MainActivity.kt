@@ -60,6 +60,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-            MyDropDownMenu()
+            AdvanceSlider()
     }
 }
