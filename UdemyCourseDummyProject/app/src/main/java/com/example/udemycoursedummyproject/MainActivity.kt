@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
 @Preview(
     name = "Preview nº1",
     showBackground = true,
@@ -60,6 +59,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-            AdvanceSlider()
+        MyRangeSlider()
     }
 }
