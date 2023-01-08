@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import com.example.udemycoursedummyproject.theory.MyBox
 import com.example.udemycoursedummyproject.theory.MySpacer
 import com.example.udemycoursedummyproject.theory.components.*
+import com.example.udemycoursedummyproject.theory.dialogs.MyAlertDialog
+import com.example.udemycoursedummyproject.theory.dialogs.MyAlertDialogContainer
 import com.example.udemycoursedummyproject.ui.CheckInfo
 import com.example.udemycoursedummyproject.ui.theme.UdemyCourseDummyProjectTheme
 
@@ -59,6 +61,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     UdemyCourseDummyProjectTheme {
-        MyRangeSlider()
+        MyAlertDialogContainer()
     }
 }
