@@ -6,10 +6,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.udemycoursedummyproject.R
+import com.example.udemycoursedummyproject.theory.components.MyRadioButtonList
 
 @Composable
 fun MyAlertDialogContainer() {
@@ -46,7 +46,8 @@ fun MyAlertDialogContainer() {
             onConfirm = { Log.i("MyAlertDialog", "Confirmado") }
         )
         MyCustomDialog(show = false) { isShown = false }
-        MyAdvancedCustomDialog(isShown) { isShown = true }
+        MyAdvancedCustomDialog(false) { isShown = true }
+        MyConfirmationDialog(isShown) { isShown = true }
     }
 }
 
@@ -137,8 +138,9 @@ fun MyAdvancedCustomDialog(
                         .background(Color.White)
                         .padding(12.dp)
                         .fillMaxWidth()
+                        .clip(RoundedCornerShape(6.dp))
                 ) {
-                    MyTitleDialog("Set backup account")
+                    MyTitleDialog("Set backup account", Modifier)
                     AccountItem(email = "mail@mail.com", drawable = R.drawable.pic_one)
                     AccountItem(email = "mail2@mail.com", drawable = R.drawable.pic_two)
                 }
@@ -166,11 +168,58 @@ fun AccountItem(email: String, @DrawableRes drawable: Int) {
 }
 
 @Composable
-fun MyTitleDialog(title: String) {
+fun MyTitleDialog(title: String, modifier: Modifier) {
     Text(
         text = title,
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
-        modifier = Modifier.padding(bottom = 12.dp)
+        modifier = modifier.padding(bottom = 12.dp)
     )
+}
+
+
+@Composable
+fun MyConfirmationDialog(
+    show: Boolean,
+    onDismiss: () -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        if (show) {
+            Dialog(
+                onDismissRequest = { onDismiss() },
+                properties = DialogProperties(
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = true
+                )
+            ) {
+                Card(shape = RoundedCornerShape(4.dp), modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        Modifier
+                            .background(Color.White)
+                            .padding(12.dp)
+                            .fillMaxWidth()
+                    ) {
+                        MyTitleDialog("Phone ringtone", Modifier)
+                        Divider(Modifier.fillMaxWidth(), Color.LightGray)
+                        var status by rememberSaveable { mutableStateOf("") }
+                        MyRadioButtonList(selectedRadioButton = status, onClick = { status = it })
+                        Divider(Modifier.fillMaxWidth(), Color.LightGray)
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                            TextButton(onClick = { /*TODO*/ }) {
+                                Text(text = "Cancel")
+                            }
+                            TextButton(onClick = { /*TODO*/ }) {
+                                Text(text = "Ok")
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
+    }
 }
